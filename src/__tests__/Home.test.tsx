@@ -1,3 +1,4 @@
+/* eslint-disable testing-library/no-await-sync-events */
 import { render, screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Home from '../app/page'
@@ -28,9 +29,9 @@ describe('Home', () => {
 
         // ACT
         const checkbox = screen.getAllByRole('checkbox')[0] as HTMLInputElement
-        expect(checkbox.checked).toBeFalsy()
+        expect(checkbox).not.toBeChecked()
         await userEvent.click(checkbox)
-        expect(checkbox.checked).toBeTruthy() // ASSERT 
+        expect(checkbox).toBeChecked() // ASSERT 
 
     })
 
